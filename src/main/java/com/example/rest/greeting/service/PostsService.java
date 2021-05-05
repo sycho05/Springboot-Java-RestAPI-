@@ -29,14 +29,16 @@ public class PostsService {
 	}
 
 	public Posts createPost(Posts posts) {
-        Optional<Posts> postOptional = postsJpaRepository.findByTitle(posts.getTitle());
+		Optional<Posts> postOptional = postsJpaRepository.findByTitle(posts.getTitle());
 		
 		if (postOptional.isPresent()) {
-			throw new IllegalStateException("Same Title Available");
+			throw new ResponseStatusException(HttpStatus.CONFLICT, "Same Title Available");
 		}
 		else {
+			//INSERT INTO posts VALUES (posts.slug, post.title, post.body)
 	        postsJpaRepository.save(posts);
-	        return postsJpaRepository.findBySlug(posts.getSlug()).get();
+	        // return postRepository.findBySlug(posts.getSlug()).get();
+	        throw new ResponseStatusException(HttpStatus.OK, "Post successfully created!");
 		}
 	}
 

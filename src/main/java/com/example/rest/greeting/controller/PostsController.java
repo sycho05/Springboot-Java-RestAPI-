@@ -3,6 +3,7 @@ package com.example.rest.greeting.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,12 +51,12 @@ public class PostsController {
     	return postService.editPost(posts, id);
     }
 
-    @GetMapping("/delete/{id}")
-    public List<Posts> delete(@PathVariable final Long id){
-        return postService.deletePost(id);
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable final Long id){
+        postService.deletePost(id);
     }
 	
-	@GetMapping("/delete_slug/{slug}")
+	@DeleteMapping("/delete_slug/{slug}")
 	public void delete (@PathVariable final String slug){
 		if(postService.deletePostBySlug(slug))
 			throw new ResponseStatusException(HttpStatus.OK, "Post[="+ slug +"]berhasil dihapus");
@@ -63,7 +64,7 @@ public class PostsController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Post[="+ slug +"]gagal dihapus");
 	}
 
-	@GetMapping("/delete_title/{title}")
+	@DeleteMapping("/delete_title/{title}")
 	public void delete_title (@PathVariable final String title){
 		if(postService.deletePostByTitle(title))
 			throw new ResponseStatusException(HttpStatus.OK, "Post[="+ title +"]berhasil dihapus");
