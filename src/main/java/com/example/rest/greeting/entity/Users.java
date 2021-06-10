@@ -97,17 +97,5 @@ public class Users {
 		this.regdate = regdate;
 	}
 
-	@Override
-	public String toString() {
-		return "{" +
-			" id='" + getId() + "'" +
-			", name='" + getName() + "'" +
-			", zipcode='" + getZipcode() + "'" +
-			", email='" + getEmail() + "'" +
-			", username='" + getUsername() + "'" +
-			", password='" + getPassword() + "'" +
-			", register_date='" + getRegdate() + "'" +
-			"}";
-	}
 }
 

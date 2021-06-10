@@ -27,6 +27,11 @@ public class PostsService {
 	public List<Posts> getPostsWithBody(String body) {
 		return postsJpaRepository.findAllByBodyContainsIgnoreCase(body);
 	}
+	public List<Posts> getPosts(Long userid){	
+		//SELECT * FROM posts
+//		return postsJpaRepository.findAll();
+		return postsJpaRepository.findByUserid(userid);
+	}
 
 	public Posts createPost(Posts posts) {
 		Optional<Posts> postOptional = postsJpaRepository.findByTitle(posts.getTitle());
@@ -90,7 +95,9 @@ public class PostsService {
 		}
 
 
-	}}
+	}
+
+}
 
 	
 	

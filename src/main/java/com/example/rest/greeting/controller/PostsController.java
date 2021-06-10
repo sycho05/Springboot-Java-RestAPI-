@@ -41,6 +41,11 @@ public class PostsController {
 		return postService.getPostsWithBody(body);
 	}
 
+	@GetMapping("/get_userid/{userid}")
+	public List<Posts> findByUserid(@PathVariable final Long userid){
+		return postService.getPosts(userid);
+	}
+
 	@PostMapping("/create")
 	public Posts create(@RequestBody final Posts posts) {
 		return postService.createPost(posts);
